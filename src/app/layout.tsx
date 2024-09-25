@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import Navbar from "@/components/landing-navbar";
 import { Provider } from "@/components/provider";
+import { Toaster } from "@/components/ui/toaster";
 
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Toaster />
         </Provider>
       </body>
     </html>

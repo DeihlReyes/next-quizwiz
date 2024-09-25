@@ -1,4 +1,3 @@
-/* eslint-disable check-file/folder-naming-convention */
 import { redirect } from "next/navigation";
 
 import { getServerSession } from "next-auth";

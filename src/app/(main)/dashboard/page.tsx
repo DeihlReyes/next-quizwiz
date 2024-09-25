@@ -1,4 +1,3 @@
-/* eslint-disable check-file/folder-naming-convention */
 import Link from "next/link";
 import { redirect } from "next/navigation";
 

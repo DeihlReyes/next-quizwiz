@@ -1,4 +1,3 @@
-/* eslint-disable check-file/folder-naming-convention */
 "use client";
 
 import Link from "next/link";
@@ -14,12 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-/* eslint-disable check-file/folder-naming-convention */
-
-/* eslint-disable check-file/folder-naming-convention */
-
-/* eslint-disable check-file/folder-naming-convention */
 
 export default function SignUpPage() {
   const handleGoogleSignUp = () => {

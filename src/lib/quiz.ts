@@ -4,9 +4,6 @@ import { getServerSession } from "next-auth";
 
 import { prisma } from "./prisma";
 
-// Adjust the path as needed
-
-// Function to fetch the user from the database based on the session email
 export const fetchUser = async () => {
   const session = await getServerSession();
 
@@ -82,4 +79,21 @@ export const fetchUserData = async () => {
     latestActivity,
     averageTimeTaken,
   };
+};
+
+export const fetchQuiz = async (id: string) => {
+  const data = await prisma.quiz.findUnique({
+    where: { id: id },
+    include: {
+      questions: {
+        select: {
+          id: true,
+          text: true,
+          options: true,
+        },
+      },
+    },
+  });
+
+  return data;
 };

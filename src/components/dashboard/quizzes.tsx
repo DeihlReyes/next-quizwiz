@@ -29,7 +29,9 @@ const Quizzes: React.FC<QuizzesProps> = ({ quizzes }) => {
               Created on {new Date(quiz.createdAt).toLocaleDateString()}
             </p>
             <Link href={"/dashboard"}>
-              <Button className="w-full">Take Quiz</Button>
+              <Button className="w-full" asChild>
+                <Link href={`/quiz/take/${quiz.id}`}>Take Quiz</Link>
+              </Button>
             </Link>
           </CardContent>
         </Card>
