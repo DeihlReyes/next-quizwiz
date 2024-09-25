@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import Navbar from "@/components/navbar";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Provider } from "@/components/provider";
 
 import "./globals.css";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider
+        <Provider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
-        </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );
