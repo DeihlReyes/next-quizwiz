@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/landing-navbar";
 import { Provider } from "@/components/provider";
 
 import "./globals.css";

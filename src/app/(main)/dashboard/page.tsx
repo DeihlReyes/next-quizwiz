@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import { PlusCircle } from "lucide-react";
 import { getServerSession } from "next-auth";
 
-import InfoCardSection from "@/components/info-card-section";
+import InfoCardSection from "@/components/dashboard/info-card-section";
+import TabSection from "@/components/dashboard/tab-section";
 import { Button } from "@/components/ui/button";
 import options from "@/config/auth";
 
@@ -29,6 +30,7 @@ export default async function DashboardPage() {
       </div>
 
       <InfoCardSection />
+      <TabSection />
     </main>
   );
 }

@@ -1,8 +1,8 @@
-import CallToActionSection from "@/components/landing/cta-section";
-import FaqSection from "@/components/landing/faq-section";
-import HeroSection from "@/components/landing/hero-section";
-import Testimonials from "@/components/landing/testimonials";
-import WhyQuizWizSection from "@/components/landing/why-quizwiz-section";
+import CallToActionSection from "@/components/landing-sections/cta-section";
+import FaqSection from "@/components/landing-sections/faq-section";
+import HeroSection from "@/components/landing-sections/hero-section";
+import Testimonials from "@/components/landing-sections/testimonials";
+import WhyQuizWizSection from "@/components/landing-sections/why-quizwiz-section";
 
 export default function Home() {
   return (

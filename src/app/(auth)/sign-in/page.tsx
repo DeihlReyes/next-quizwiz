@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { getServerSession } from "next-auth";
 
-import AuthButton from "@/components/navbar/auth-button";
+import AuthButton from "@/components/landing-navbar/auth-button";
 import {
   Card,
   CardContent,

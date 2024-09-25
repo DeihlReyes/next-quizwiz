@@ -1,18 +1,21 @@
 "use server";
 
-import { User } from "@prisma/client";
-// To get the session
 import { getServerSession } from "next-auth";
 
 import { prisma } from "./prisma";
 
-export const fetchUserData = async () => {
+// Adjust the path as needed
+
+// Function to fetch the user from the database based on the session email
+export const fetchUser = async () => {
   const session = await getServerSession();
 
+  // Check if the user is authenticated
   if (!session || !session.user?.email) {
     throw new Error("Unauthorized");
   }
 
+  // Fetch user data based on email
   const user = (await prisma.user.findUnique({
     where: { email: session.user.email },
     include: {
@@ -27,22 +30,28 @@ export const fetchUserData = async () => {
         take: 5,
       },
     },
-  })) as
-    | (User & {
-        quizzes: { id: string; title: string; createdAt: Date }[];
-        quizResults: {
-          id: string;
-          score: number;
-          timeTaken: number;
-          createdAt: Date;
-          quiz: { id: string; title: string };
-        }[];
-      })
-    | null;
+  })) as {
+    quizzes: { id: string; title: string; createdAt: Date }[];
+    quizResults: {
+      id: string;
+      score: number;
+      timeTaken: number;
+      createdAt: Date;
+      quiz: { id: string; title: string };
+    }[];
+  } | null;
 
+  // Check if the user exists
   if (!user) {
     throw new Error("User not found.");
   }
+
+  return user; // Return the user object for reuse
+};
+
+// Function to fetch user metrics
+export const fetchUserData = async () => {
+  const user = await fetchUser(); // Reuse the fetchUser function
 
   const totalQuizzes = user.quizzes.length;
   const totalQuizzesTaken = user.quizResults.length;

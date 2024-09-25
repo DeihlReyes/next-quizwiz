@@ -13,8 +13,8 @@ import useFetchQuiz from "@/hooks/use-fetch-quiz";
 // Adjust the import path as necessary
 import { formatTime } from "@/lib/utils";
 
+import InfoSectionLoading from "../loading/dashboard/info-section-loading";
 import InfoCard from "./info-card";
-import InfoSectionLoading from "./loading/dashboard/info-section-loading";
 
 export default function InfoCardSection() {
   const { userData, loading, error } = useFetchQuiz();

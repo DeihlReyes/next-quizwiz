@@ -19,6 +19,8 @@ import {
 
 /* eslint-disable check-file/folder-naming-convention */
 
+/* eslint-disable check-file/folder-naming-convention */
+
 export default function SignUpPage() {
   const handleGoogleSignUp = () => {
     signIn("google", { callbackUrl: "/dashboard" });
