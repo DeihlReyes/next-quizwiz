@@ -5,15 +5,6 @@
     "prefer-arrow-callback": ["error"],
     "prefer-template": ["error"],
     "semi": ["error"],
-    "quotes": ["error", "double"],
-    "check-file/filename-naming-convention": [
-      "error",
-      {
-        "**/*.{ts,tsx}": "KEBAB_CASE"
-      },
-      {
-        "ignoreMiddleExtensions": true
-      }
-    ]
+    "quotes": ["error", "double"]
   }
 }

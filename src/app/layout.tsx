@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import Navbar from "@/components/landing-navbar";
 import { Provider } from "@/components/provider";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -31,7 +30,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
           {children}
           <Toaster />
         </Provider>

@@ -15,12 +15,12 @@ export default function HeroSection() {
           Create, take, and analyze quizzes on any topic. Boost your learning
           with AI-powered questions and personalized feedback.
         </p>
-        <Link href="/">
-          <Button size="lg" className="px-8 py-6 text-lg">
+        <Button size="lg" className="px-8 py-6 text-lg" asChild>
+          <Link href="/sign-in">
             Get Started for Free
             <ChevronRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </section>
   );

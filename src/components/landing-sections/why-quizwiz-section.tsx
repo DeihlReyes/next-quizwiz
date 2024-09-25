@@ -1,4 +1,4 @@
-import { Brain, CheckCircle, Trophy, Users, Zap } from "lucide-react";
+import { Brain, CheckCircle, Zap } from "lucide-react";
 
 import {
   Card,
@@ -27,24 +27,24 @@ const features = [
     description:
       "Monitor your improvement over time with detailed performance analytics.",
   },
-  {
-    icon: Trophy,
-    title: "Gamified Learning",
-    description:
-      "Earn badges and climb leaderboards as you master new subjects.",
-  },
-  {
-    icon: Users,
-    title: "Collaborative Study",
-    description:
-      "Create and share quizzes with friends or classmates for group learning.",
-  },
-  {
-    icon: Brain,
-    title: "Adaptive Difficulty",
-    description:
-      "Questions adjust to your skill level, providing an optimal challenge.",
-  },
+  // {
+  //   icon: Trophy,
+  //   title: "Gamified Learning",
+  //   description:
+  //     "Earn badges and climb leaderboards as you master new subjects.",
+  // },
+  // {
+  //   icon: Users,
+  //   title: "Collaborative Study",
+  //   description:
+  //     "Create and share quizzes with friends or classmates for group learning.",
+  // },
+  // {
+  //   icon: Brain,
+  //   title: "Adaptive Difficulty",
+  //   description:
+  //     "Questions adjust to your skill level, providing an optimal challenge.",
+  // },
 ];
 
 export default function WhyQuizWizSection() {

@@ -96,3 +96,48 @@ export const fetchQuiz = async (id: string) => {
 
   return data;
 };
+
+export const getResults = async (id: string) => {
+  const result = await prisma.quizResult.findUnique({
+    where: { id },
+    include: {
+      quiz: {
+        select: {
+          id: true,
+          title: true,
+          createdAt: true,
+        },
+      },
+      answers: {
+        include: {
+          question: {
+            select: {
+              id: true,
+              text: true,
+              options: true,
+              correctAnswer: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!result) {
+    return null;
+  }
+
+  const restructuredResult = {
+    ...result,
+    answers: result.answers.map((answer) => ({
+      id: answer.id,
+      questionText: answer.question.text,
+      options: answer.question.options,
+      selectedOption: answer.selectedOption,
+      correctOption: answer.question.correctAnswer,
+      isCorrect: answer.isCorrect,
+    })),
+  };
+
+  return restructuredResult;
+};

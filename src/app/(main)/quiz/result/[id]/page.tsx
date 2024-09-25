@@ -1,5 +1,11 @@
+import { redirect } from "next/navigation";
+
+import { getServerSession } from "next-auth";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import options from "@/config/auth";
+import { getResults } from "@/lib/quiz";
 
 import { ActionButtons } from "./action-buttons";
 import { ConfettiEffect } from "./confetti-effect";
@@ -12,7 +18,7 @@ interface QuizResult {
   score: number;
   correctAnswers: number;
   totalQuestions: number;
-  createdAt: string;
+  createdAt: Date;
   quiz: { id: string; title: string };
   answers: {
     id: string;
@@ -29,26 +35,19 @@ export default async function QuizResultsPage({
 }: {
   params: { id: string };
 }) {
-  const fetchResult = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXTAUTH_URL}/api/quiz/result/${params.id}`
-      );
+  const session = await getServerSession(options);
 
-      console.log("Response:", response);
+  if (!session) {
+    redirect("/sign-in");
+  }
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch quiz result");
-      }
+  const data = await getResults(params.id);
 
-      const data = await response.json();
-      return data as QuizResult;
-    } catch (error) {
-      console.error("Error fetching quiz result:");
-    }
-  };
+  if (!data) {
+    return null;
+  }
 
-  const result = await fetchResult();
+  const result = data as QuizResult;
 
   if (!result) {
     return (
@@ -76,7 +75,7 @@ export default async function QuizResultsPage({
         <CardContent className="space-y-6">
           <ResultHeader
             quizTitle={result.quiz.title}
-            createdAt={result.createdAt}
+            createdAt={result.createdAt.toISOString()}
           />
           <ScoreSummary
             score={result.score}

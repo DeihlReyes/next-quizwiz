@@ -9,12 +9,12 @@ const faqs = [
   {
     question: "Is QuizWiz free to use?",
     answer:
-      "Yes, QuizWiz offers a free tier with access to basic features. We also offer premium plans for advanced features and unlimited quizzes.",
+      "Yes, QuizWiz is completely free to use. You can generate quizzes, track your progress, and more without any cost.",
   },
   {
     question: "How does the AI generate quizzes?",
     answer:
-      "Our AI uses advanced natural language processing to analyze vast amounts of data and create relevant, challenging questions on any given topic.",
+      "QuizWiz is powered by Gemini AI which is developed by Google. We use prompts to generate quizzes based on your specified topics.",
   },
   {
     question: "Can I create my own quizzes?",

@@ -30,7 +30,7 @@ export default function AuthDropDown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger className="shadow-md" asChild>
         <Avatar>
           <AvatarImage
             src={data.user?.image || ""}

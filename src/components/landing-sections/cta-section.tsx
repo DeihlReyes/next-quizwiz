@@ -15,7 +15,7 @@ export default function CallToActionSection() {
           Join thousands of learners who are already improving their knowledge
           with QuizWiz.
         </p>
-        <Link href="/">
+        <Link href="/sign-in">
           <Button
             size="lg"
             className="bg-primary-foreground px-8 py-6 text-lg text-primary hover:bg-primary-foreground/90"

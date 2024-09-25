@@ -15,6 +15,7 @@ export async function POST(req: Request) {
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
   const body = await req.json();
 
   const { topic, numQuestions, difficulty } = generateQuizSchema.parse(body);
