@@ -1,4 +1,5 @@
-// components/ConfettiEffect.tsx
+"use client";
+
 import { useEffect, useState } from "react";
 
 import Confetti from "react-confetti";

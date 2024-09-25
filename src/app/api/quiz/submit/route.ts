@@ -4,8 +4,7 @@ import { getServerSession } from "next-auth/next";
 
 import options from "@/config/auth";
 import { prisma } from "@/lib/prisma";
-
-import { quizSubmissionSchema } from "./../../../../lib/validation";
+import { quizSubmissionSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
   try {

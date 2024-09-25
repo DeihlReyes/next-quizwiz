@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { BookOpen, Target } from "lucide-react";
 
-import { fetchUser } from "@/lib/quiz";
+import { fetchResults } from "@/lib/quiz";
 
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
@@ -10,8 +13,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Quizzes from "./quizzes";
 import Results from "./results";
 
-const TabSection: React.FC = async () => {
-  const user = await fetchUser();
+const TabSection: React.FC = () => {
+  const [user, setUser] = useState<{ quizzes: any[]; quizResults: any[] }>({
+    quizzes: [],
+    quizResults: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetchResults();
+      setUser(result);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Tabs defaultValue="results" className="space-y-4">

@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 
 import { prisma } from "./prisma";
 
-export const fetchUser = async () => {
+export const fetchResults = async () => {
   const session = await getServerSession();
 
   // Check if the user is authenticated
@@ -38,17 +38,16 @@ export const fetchUser = async () => {
     }[];
   } | null;
 
-  // Check if the user exists
   if (!user) {
     throw new Error("User not found.");
   }
 
-  return user; // Return the user object for reuse
+  return user;
 };
 
 // Function to fetch user metrics
 export const fetchUserData = async () => {
-  const user = await fetchUser(); // Reuse the fetchUser function
+  const user = await fetchResults(); // Reuse the fetchUser function
 
   const totalQuizzes = user.quizzes.length;
   const totalQuizzesTaken = user.quizResults.length;

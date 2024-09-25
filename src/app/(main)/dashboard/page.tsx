@@ -20,7 +20,7 @@ export default async function DashboardPage() {
     <main className="container mx-auto space-y-8 p-12">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Welcome, {session.user!.name}</h1>
-        <Link href="/">
+        <Link href="/quiz/create">
           <Button className="flex items-center space-x-2">
             <PlusCircle className="h-5 w-5" />
             <span>Create Quiz</span>

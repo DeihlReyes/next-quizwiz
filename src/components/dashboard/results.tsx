@@ -58,11 +58,9 @@ const Results: React.FC<ResultsProps> = ({ quizResults }) => {
                   {new Date(result.createdAt).toLocaleDateString()}
                 </TableCell>
                 <TableCell>
-                  <Link href={"/dashboard"}>
-                    <Button variant="outline" size="sm">
-                      View Details
-                    </Button>
-                  </Link>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={`/quiz/result/${result.id}`}>View Details</Link>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

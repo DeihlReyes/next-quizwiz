@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
@@ -28,52 +24,44 @@ interface QuizResult {
   }[];
 }
 
-export default function QuizResultsPage({
+export default async function QuizResultsPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const [result, setResult] = useState<QuizResult | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const fetchResult = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXTAUTH_URL}/api/quiz/result/${params.id}`
+      );
 
-  useEffect(() => {
-    const fetchResult = async () => {
-      try {
-        const response = await fetch(`/api/quiz/results/${params.id}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch quiz result");
-        }
-        const data = await response.json();
-        setResult(data);
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("An error occurred while fetching the quiz result.");
-        }
-      } finally {
-        setLoading(false);
+      console.log("Response:", response);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch quiz result");
       }
-    };
 
-    fetchResult();
-  }, [params.id]);
+      const data = await response.json();
+      return data as QuizResult;
+    } catch (error) {
+      console.error("Error fetching quiz result:");
+    }
+  };
 
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        Loading...
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div className="text-center text-red-500">{error}</div>;
-  }
+  const result = await fetchResult();
 
   if (!result) {
-    return <div className="text-center">No result found.</div>;
+    return (
+      <div className="container mx-auto p-4">
+        <Card className="mx-auto max-w-3xl">
+          <CardHeader>
+            <CardTitle className="text-center text-2xl font-bold">
+              Quiz Result Not Found
+            </CardTitle>
+          </CardHeader>
+        </Card>
+      </div>
+    );
   }
 
   return (

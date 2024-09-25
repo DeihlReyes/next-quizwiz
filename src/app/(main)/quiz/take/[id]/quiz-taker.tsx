@@ -90,7 +90,7 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
       });
       if (response.ok) {
         const { resultId } = await response.json();
-        router.push(`/quiz/results/${resultId}`);
+        router.push(`/quiz/result/${resultId}`);
       } else {
         throw new Error("Failed to submit quiz");
       }
