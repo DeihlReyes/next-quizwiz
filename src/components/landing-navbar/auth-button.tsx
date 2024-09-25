@@ -8,7 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
-import SignOutButton from "./sign-out-button";
+import AuthDropDown from "./auth-dropdown";
 
 interface AuthButtonProps {
   className?: string;
@@ -26,7 +26,7 @@ export default function AuthButton({ className }: AuthButtonProps) {
         </Button>
       );
     }
-    return <SignOutButton />;
+    return <AuthDropDown />;
   }
 
   return (
