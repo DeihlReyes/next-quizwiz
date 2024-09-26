@@ -44,7 +44,7 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
     },
   });
 
-  const { control, handleSubmit, watch, setValue, formState } = form;
+  const { control, handleSubmit, watch, setValue, getValues, formState } = form;
   const answers = watch("answers");
 
   useEffect(() => {
@@ -55,8 +55,37 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
         variant: "destructive",
       });
       router.push("/"); // Redirect to home or error page
+      return;
     }
-  }, [questions, router]);
+
+    // Load saved answers and current question index from localStorage
+    const savedAnswers = localStorage.getItem(`quiz_${quizId}_answers`);
+    const savedIndex = localStorage.getItem(`quiz_${quizId}_currentIndex`);
+
+    if (savedAnswers) {
+      const parsedAnswers = JSON.parse(savedAnswers);
+      Object.entries(parsedAnswers).forEach(([questionId, answer]) => {
+        setValue(`answers.${questionId}`, answer as string);
+      });
+    }
+
+    if (savedIndex) {
+      setCurrentQuestionIndex(parseInt(savedIndex, 10));
+    }
+  }, [questions, router, quizId, setValue]);
+
+  useEffect(() => {
+    // Save answers to localStorage whenever they change
+    localStorage.setItem(`quiz_${quizId}_answers`, JSON.stringify(answers));
+  }, [answers, quizId]);
+
+  useEffect(() => {
+    // Save current question index to localStorage
+    localStorage.setItem(
+      `quiz_${quizId}_currentIndex`,
+      currentQuestionIndex.toString()
+    );
+  }, [currentQuestionIndex, quizId]);
 
   if (!questions || questions.length === 0) {
     return null; // Or return an error component
@@ -90,6 +119,9 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
       });
       if (response.ok) {
         const { resultId } = await response.json();
+        // Clear localStorage for this quiz
+        localStorage.removeItem(`quiz_${quizId}_answers`);
+        localStorage.removeItem(`quiz_${quizId}_currentIndex`);
         router.push(`/quiz/result/${resultId}`);
       } else {
         throw new Error("Failed to submit quiz");
@@ -101,6 +133,7 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
         description: "Failed to submit quiz. Please try again.",
         variant: "destructive",
       });
+      setIsFinished(false);
     }
   };
 
@@ -132,14 +165,14 @@ export default function QuizTaker({ quizId, questions }: Quiz) {
             <FormField
               control={control}
               name={`answers.${currentQuestion.id}`}
-              render={({ field }) => (
+              render={({}) => (
                 <FormItem>
                   <FormControl>
                     <RadioGroup
                       onValueChange={(value) =>
                         handleAnswer(currentQuestion.id, value)
                       }
-                      value={field.value}
+                      value={getValues(`answers.${currentQuestion.id}`) || ""}
                     >
                       {currentQuestion.options.map((option, optionIndex) => (
                         <div

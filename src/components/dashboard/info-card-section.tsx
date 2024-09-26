@@ -48,13 +48,13 @@ export default function InfoCardSection() {
       <InfoCard
         title="Highest Score"
         icon={<Trophy className="h-4 w-4 text-muted-foreground" />}
-        value={`${highestScore.toFixed(2)}%`}
+        value={`${highestScore.toFixed(0)}%`}
         description="Your best performance"
       />
       <InfoCard
         title="Average Score"
         icon={<BarChart2 className="h-4 w-4 text-muted-foreground" />}
-        value={`${averageScore.toFixed(2)}%`}
+        value={`${averageScore.toFixed(0)}%`}
         description="Across all quizzes taken"
       />
       <InfoCard
