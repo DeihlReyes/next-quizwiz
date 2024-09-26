@@ -28,11 +28,8 @@ export default async function DashboardPage() {
             </h1>
             <div className="flex w-full flex-row-reverse items-center justify-between sm:gap-5 md:w-fit md:flex-row md:justify-end md:gap-4">
               <Link href="/quiz/create">
-                <Button
-                  className="flex w-full items-center justify-center space-x-2 sm:w-auto"
-                  size="lg"
-                >
-                  <PlusCircle className="mr-2 h-5 w-5" />
+                <Button className="flex w-full items-center justify-center space-x-2 sm:w-auto">
+                  <PlusCircle className="h-5 w-5" />
                   <span className="hidden sm:inline">Create Quiz</span>
                   <span className="sm:hidden">New</span>
                 </Button>
