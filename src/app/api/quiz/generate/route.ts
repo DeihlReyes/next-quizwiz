@@ -41,7 +41,6 @@ export async function POST(req: Request) {
     const response = await result.response;
     const text = response.text();
     const questions = JSON.parse(text);
-    console.log("Generated quiz:", questions);
 
     const quiz = await prisma.quiz.create({
       data: {
