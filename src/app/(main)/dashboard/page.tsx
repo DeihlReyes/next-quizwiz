@@ -19,23 +19,37 @@ export default async function DashboardPage() {
   }
 
   return (
-    <main className="container mx-auto space-y-8 p-12">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Welcome, {session.user!.name}</h1>
-        <div className="flex flex-row items-center gap-5">
-          <Link href="/quiz/create">
-            <Button className="flex items-center space-x-2">
-              <PlusCircle className="h-5 w-5" />
-              <span>Create Quiz</span>
-            </Button>
-          </Link>
-          <ModeToggle />
-          <AuthDropDown />
+    <main className="min-h-screen bg-gradient-to-b from-background to-secondary/10">
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-8 rounded-lg border bg-card p-6 shadow-sm">
+          <div className="flex flex-col items-center justify-between space-y-4 sm:space-y-0 md:flex-row">
+            <h1 className="hidden text-center font-bold text-primary sm:text-left md:block md:text-2xl lg:text-3xl">
+              Welcome, {session.user?.name || "Guest"}
+            </h1>
+            <div className="flex w-full flex-row-reverse items-center justify-between sm:gap-5 md:w-fit md:flex-row md:justify-end md:gap-4">
+              <Link href="/quiz/create">
+                <Button
+                  className="flex w-full items-center justify-center space-x-2 sm:w-auto"
+                  size="lg"
+                >
+                  <PlusCircle className="mr-2 h-5 w-5" />
+                  <span className="hidden sm:inline">Create Quiz</span>
+                  <span className="sm:hidden">New</span>
+                </Button>
+              </Link>
+              <div className="flex flex-row-reverse items-center gap-4 md:flex-row">
+                <ModeToggle />
+                <AuthDropDown />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          <InfoCardSection />
+          <TabSection />
         </div>
       </div>
-
-      <InfoCardSection />
-      <TabSection />
     </main>
   );
 }

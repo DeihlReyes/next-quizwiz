@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Next.js Starter App",
-  description: "A basic starter for next.js",
+  title: "QuizWiz",
+  description: "QuizWiz is a quiz app with help of Gemini AI",
 };
 
 export default function RootLayout({
